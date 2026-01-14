@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Web/Web.csproj" Id="00521e71-fd84-464f-8975-03034ddb8230" />
+  <Project Path="WebSocket/WebSocket.csproj" />
+</Solution>
