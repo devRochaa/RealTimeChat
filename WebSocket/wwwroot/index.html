@@ -30,7 +30,7 @@
     <button onclick="send()">Enviar</button>
 
     <script>
-      const protocol = location.protocol == "https" ? "wss" : "ws";
+      const protocol = location.protocol == "https:" ? "wss" : "ws";
       console.log(location);
       const host = location.host ? location.host : "localhost:5000";
       const url = `${protocol}://${host}/ws`;
