@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.OpenApi" Version="1.6.27" />
   </ItemGroup>
 
+  <ItemGroup>
+  <Content Include="wwwroot\**" CopyToPublishDirectory="Always" />
+   </ItemGroup>
+
 </Project>

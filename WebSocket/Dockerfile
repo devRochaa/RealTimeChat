@@ -6,7 +6,6 @@ WORKDIR /app
 COPY *.csproj .
 RUN dotnet restore
 
-
 # Copia o resto do código
 COPY . .
 RUN dotnet publish -c Release -o out
@@ -20,7 +19,6 @@ COPY --from=build /app/out .
 
 # Expõe a porta usada pelo app
 EXPOSE 5000
-
 
 # Inicia a aplicação
 ENTRYPOINT ["dotnet", "WebSocket.dll"]

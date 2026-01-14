@@ -7,8 +7,14 @@ using System.Net.WebSockets;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var app = builder.Build();
 app.UseWebSockets();
+
+app.UseDefaultFiles(); // permite index.html sem rota
+app.UseStaticFiles(); // habilita wwwroot
+
+app.MapGet("/health", () => "OK"); // teste pro render
 
 //coleção thread-safe do .NET que armazena todos os WebSockets conectados.
 //Thread = caminhos de execução independentes dentro de um mesmo processo,
@@ -30,7 +36,7 @@ app.Map("/ws", async context =>
 
     sockets.TryAdd(id, webSocket);
 
-    Console.WriteLine(history);
+    //Console.WriteLine(history);
     foreach (var msg in history)
     {
         await webSocket.SendAsync(
@@ -51,7 +57,7 @@ app.Map("/ws", async context =>
             if (result.MessageType == WebSocketMessageType.Close)
                 break;
 
-            Console.WriteLine($"Client ({id}) conectado");
+            //Console.WriteLine($"Client ({id}) conectado");
 
             var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
 
@@ -67,7 +73,7 @@ app.Map("/ws", async context =>
             {
                 if (ws.State == WebSocketState.Open)
                 {
-                    Console.WriteLine($"send to client ");
+                    //Console.WriteLine($"send to client ");
                     await ws.SendAsync(
                         data,
                         WebSocketMessageType.Text,
