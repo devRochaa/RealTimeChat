@@ -70,9 +70,10 @@
 
         divUser.style.color = client.cor;
         divUser.style.fontWeight = "bold";
-        divUser.textContent = id;
+        divUser.textContent = "kalish";
 
         const divMessage = document.createElement("div");
+        divMessage.style.wordBreak = "break-all";
         divMessage.textContent = dataText.substring(dataText.indexOf(":"));
 
         div.appendChild(divUser);
@@ -83,6 +84,15 @@
 
       function send() {
         const input = document.getElementById("text");
+        if (input.value.trim() == "") {
+          alert("Nao é possível enviar mensagens vazias.");
+          return;
+        }
+        if (input.value.length > 1000) {
+          alert("A mensagem não pode exceder 1000 caracteres.");
+          return;
+        }
+
         ws.send(input.value);
         input.value = "";
       }
